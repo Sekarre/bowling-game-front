@@ -455,7 +455,7 @@
     }
 
     > .content {
-        padding: 78px 30px 30px 280px;
+        //padding: 78px 30px 30px 78px;
         min-height: calc(100vh - 70px);
     }
 
@@ -465,7 +465,7 @@
 
 
     .header {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 }
 
@@ -502,7 +502,6 @@
         }
 
         .sidebar{
-          width: 80px;
 
           .sidebar-wrapper{
             width: 100% !important;
@@ -635,12 +634,10 @@
     display: block;
     top: 0;
     height: 100%;
-    width: 260px;
     right: auto;
     left: 0;
     margin: 0;
     border-radius: 0;
-    z-index: 1032;
     visibility: visible;
     overflow-y: visible;
     padding: 0;
@@ -654,9 +651,7 @@
 
   .main-panel {
     width: 100%;
-      .content {
-      padding-left: 30px;
-    }
+
   }
 
   .nav-open{

@@ -3,7 +3,7 @@ export class Player {
   name: string;
   numberInQueue: number;
   playerScore: number;
-  lastHitPinsCount: number;
+  thisRoundHitPinsCount: number;
   scoreType: string;
   turnOfRound: number;
 }

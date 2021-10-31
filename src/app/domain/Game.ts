@@ -6,8 +6,9 @@ export class Game {
   playersCount: number;
   currentRound: number;
   totalRound: number;
+  lastHitPins: number;
   gameEnded: boolean;
   winner: string;
-  currentMovingPlayer: PlayerShort;
-  players: Player[];
+  currentMovingPlayer: PlayerShort = new PlayerShort();
+  players: Player[] = [];
 }

@@ -13,8 +13,6 @@ export class GameService {
   private updateGameUrl = 'http://localhost:8080/api/bowling-game/game-update';
   private numberOfPlayersUrl = 'http://localhost:8080/api/bowling-game/number-of-players';
 
-  private gameId: string | number;
-
   constructor(private http: HttpClient) {
   }
 
@@ -29,18 +27,26 @@ export class GameService {
   }
 
   getGame(): Observable<Game> {
-    const url = this.gameUrl + '/' + this.gameId;
+    const url = this.gameUrl + '/' + this.getGameId();
 
     return this.http.get<Game>(url);
   }
 
-  updateGame(gameId: string | number): Observable<Game> {
-    const url = this.updateGameUrl + '/' + gameId;
+  updateGame(): Observable<Game> {
+    const url = this.updateGameUrl + '/' + this.getGameId();
 
     return this.http.get<Game>(url);
   }
 
   setGameId(gameId: number | string) {
-    this.gameId = gameId;
+    sessionStorage.setItem('gameId', gameId.toString());
+  }
+
+  getGameId() {
+    return sessionStorage.getItem('gameId');
+  }
+
+  removeGame() {
+    sessionStorage.removeItem('gameId');
   }
 }

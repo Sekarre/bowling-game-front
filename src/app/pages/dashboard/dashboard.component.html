@@ -1,102 +1,63 @@
-
 <div class=" content">
-  <div class=" row">
-    <div class=" col-12">
+  <app-alert></app-alert>
+  <div class="card-description" style="padding-bottom: 10px">
+    <a class="btn btn-danger" [routerLink]="['/app-new-game']">Start new Game</a>
+  </div>
+  <div class="card-description d-flex justify-content-center" style="padding-bottom: 10px;">
+    <button class="btn btn-info" (click)="updateGame()">Throw</button>
+  </div>
+  <div class="row">
+    <div class="card col-6" style="height: 650px">
+      <div class="card-body">
+        <h3
+          class="col-12 card-title">{{game.currentRound <= game.totalRound ? ('Round ' + game.currentRound + ' of ' + game.totalRound + ' - turn ' + game.currentRound) : 'Game ended'}}</h3>
+        <img style='height: 500px; width: 100%; object-fit: contain;' [src]="imgPath" alt="Card image cap"/>
+        <h3 class="card-text text-center" style="color:#ffffff; padding-top: 30px">Total hit: {{game.lastHitPins}}</h3>
+        <div class="card col-12">
+          <div class="card-body ">
+            <h4 class="card-text ">Current: {{game.currentMovingPlayer.name}}-  {{game.currentMovingPlayer.turnOfRound}} turn</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class=" col-6">
       <div class=" card card-chart">
         <div class=" card-header">
           <div class=" row">
-            <div class=" col-sm-6 text-left">
-              <h2 class=" card-title">Game board</h2>
+            <div class=" col-sm-12 text-center">
+              <h2 class=" card-title">Game leaderboard </h2>
             </div>
-            <div class=" col-sm-6">
+            <div class="text-center col-sm-12">
+              <p class="card-text">
+                <small class="text-muted">{{game.players.length}} players</small>
+              </p>
             </div>
           </div>
         </div>
-        <div class=" card-body">
-
-
-
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center">#</th>
-                <th>Name</th>
-                <th class="text-right">Score</th>
-                <th class="text-right">Last hit pins</th>
-              </tr>
+        <div class="card-body">
+          <table class="table ">
+            <thead class=" text-primary">
+            <tr>
+              <th class="text-center">#</th>
+              <th>Name</th>
+              <th class="text-center">Score</th>
+              <th class="text-center">This round hit pins</th>
+            </tr>
             </thead>
-            <tbody *ngFor="let player of game.players">
-              <tr>
-                <td class="text-center">1</td>
-                <td>{{player.name}}</td>
-                <td>{{player.playerScore}}</td>
-                <td class="text-right">{{player.lastHitPinsCount}}</td>
-              </tr>
+            <tbody *ngFor="let player of game.players; let i = index">
+            <tr [ngStyle]="{'background-color': (player.name==game.currentMovingPlayer.name) ? '#73c7af' : ''}">
+              <td class="text-center">{{i + 1}}</td>
+              <td>{{player.name}}</td>
+              <td class="text-center">{{player.playerScore}}</td>
+              <td class="text-center">{{player.thisRoundHitPinsCount}}</td>
+            </tr>
             </tbody>
           </table>
-
-
-
-<!--          <div *ngFor="let password of passwordList"  class="card card-user col-12">-->
-<!--            <div>-->
-<!--              <div class=" btn-group btn-group-toggle float-right" data-toggle="buttons">-->
-<!--                <label class=" btn btn-sm  btn-simple" (click)="showPassword(password.id)">-->
-<!--                  <h5 class=" card-title">-->
-<!--                    <i class=" tim-icons icon-support-17">  Show</i>-->
-<!--                  </h5>-->
-<!--                </label>-->
-<!--                <label class="btn btn-sm btn-simple" [routerLink]="['/password-edit', password.id]" >-->
-<!--                  <h5 class=" card-title">-->
-<!--                    <i class="tim-icons icon-pencil text-info-states">  Edit </i>-->
-<!--                  </h5>-->
-<!--                </label>-->
-<!--                <label class="btn btn-sm  btn-simple" (click)="deletePassword(password.id)" >-->
-<!--                  <h5 class=" card-title">-->
-<!--                    <i class=" tim-icons  icon-trash-simple">  Delete </i>-->
-<!--                  </h5>-->
-<!--                </label>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div  class=" card-body">-->
-<!--              <p class=" card-text"></p>-->
-<!--              <div class=" author">-->
-<!--                <div class=" block block-one"></div>-->
-<!--                <div class=" block block-two"></div>-->
-<!--                </div>-->
-<!--                <h5 class="d-flex justify-content-center title">{{ password.title }}</h5>-->
-<!--                <div class="d-flex justify-content-center row">-->
-<!--                  <div class=" col-md-5 pr-md-1">-->
-<!--                    <div class="form-group">-->
-<!--                      <label> Login </label>-->
-<!--                      <input-->
-<!--                        class=" form-control"-->
-<!--                        disabled=""-->
-<!--                        placeholder="Login"-->
-<!--                        type="text"-->
-<!--                        value="{{ password.login }}"-->
-<!--                      />-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class=" col-md-5 pr-md-1">-->
-<!--                    <div class=" form-group">-->
-<!--                      <label> Password </label>-->
-<!--                      <input class=" form-control" disabled="" [(ngModel)]="password.password"/>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="d-flex justify-content-center card-description">-->
-<!--                  <p class=" category">-->
-<!--                    Corresponding URL address:-->
-<!--                    <a href="{{ password.webAddress }}">{{ password.webAddress }}</a>-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--                <div class="d-flex justify-content-center card-description">-->
-<!--                  {{ password.description }}-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-          </div>
         </div>
       </div>
     </div>
   </div>
+
+</div>
